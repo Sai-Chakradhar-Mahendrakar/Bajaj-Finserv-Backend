@@ -64,13 +64,16 @@ app.post('/bfhl', (req, res) => {
     user_id: USER_ID,
     email: EMAIL,
     roll_number: ROLL_NUMBER,
-    numbers,
-    alphabets,
+    numbers: numbers,
+    alphabets: alphabets,
     highest_alphabet: highestAlphabet ? [highestAlphabet] : [],
     file_valid: fileMetadata.valid,
-    file_mime_type: fileMetadata.mimeType,
-    file_size_kb: fileMetadata.sizeKb
+    ...(file_b64 && {
+        file_mime_type: fileMetadata.mimeType,
+        file_size_kb: fileMetadata.sizeKb
+    })
   });
+
 });
 
 
